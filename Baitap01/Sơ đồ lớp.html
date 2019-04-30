@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sơ đồ lớp (HTML & CSS)</title>
+</head>
+<style>
+    *:not(h1) {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .col-1 {
+        width: 2%;
+    }
+    .col-2 {
+        width: 42.5%;
+    }
+    .col-3 {
+        width: 15%
+    }
+    .fl {
+        float: left;
+    }
+
+    h1 {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        text-align: center;
+    }
+    h4, h3 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 500;
+    }
+
+    .so-do {
+        width: 100%;
+        height: 100vh;
+        display: block;
+    }
+    .buc-giang {
+        width: 100%;
+        height: 93.75px;
+        border: 1px solid #000;
+        text-align: center;
+        font-size: 28px;
+        line-height: 93.75px;
+    }
+    .ban-gv {
+        width: 100%;
+        height: 62.5px;
+        font-size: 22px;
+        line-height: 62.5px;
+        /* position: relative; */
+    }
+    .ban-gv h4 {
+        width: 30%;
+        height: inherit;
+        background-color: white;
+        border: 1px solid #000;
+        text-align: center;
+        font-weight: 400;
+        transform: translateY(-6vh);
+        float: right;
+    }
+    .cua {
+        /* width: 2%; */
+        /* height: 100vh; */
+        display: inline-block;
+        margin-right: 1%;
+    }
+    .cua span {
+        width: 100%;
+        height: 19vh;
+        display: block;
+    }
+    .cua span:nth-of-type(2n) {
+        height: 60vh;
+        margin-bottom: 16px;
+        /* background-image: linear-gradient( to left, rgba(128, 128, 165, 0.651), transparent); */
+        border-top: 1px solid #000;
+        border-bottom: 1px solid black;
+        text-align: center;
+        line-height: 30px;
+        writing-mode: vertical-lr;
+        transform: rotate(-180deg);
+    }
+    .cua span:nth-of-type(2n):hover {
+        background-image: linear-gradient( to left, rgba(119, 125, 139, 0.14), transparent);
+    }
+    td:nth-child(2n) {
+        width: 0.5%;
+    }
+    td:nth-child(4n) {
+        width: 5%;
+    }
+    .day-ban {
+        /* width: 98%; */
+        height: inherit;
+        display: inline-block;
+        position: absolute;
+        /* border: 1px solid #000; */
+    }
+    table {
+        border-spacing: 10px;
+    }
+    .ban {
+        /* display: block; */
+        /*padding: 0 0.8%;*/ /*10px 20px;*/
+        /* border: 1px solid #000; */
+        /* margin-bottom: 5%; */
+    }
+    .nhom {
+        width: 15%;
+        /* margin: 4px; */
+        padding: 15px 10px;
+        border: 1px solid #000;
+        border-radius: 4px;
+    }
+    .nhom > div {
+        position: relative;
+        /* display: inline-block; */
+        width: 50%;
+        height: auto;
+        float: left;
+        /* margin: 5px; */
+        padding: 3%;
+        border: 1px solid rgba(0, 0, 0, 0);
+        word-break: keep-all;
+        text-align: center;
+    }
+    .nhom > div:hover {
+        border: 1px solid rgba(119, 125, 139, 0.5);
+        border-radius: 4px;
+        box-shadow: 0 1px 15px rgba(138, 150, 175, 0.18);        
+    }
+    .nhom > div:hover > h4{
+        transform: scale(1.08, 1.08);
+    }
+    .ho-so {
+        visibility: hidden;
+        position: absolute;
+        
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        
+        padding: 22px 25px;
+        
+        background-color: white;
+        width: max-content;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .ho-so::after {
+        content: "";
+        position: absolute;
+        
+        border-width: 8px;
+        border-style: solid;
+    }
+    .ho-so::before {
+        content: "";
+        position: absolute;
+        
+        border-width: 7px;
+        border-style: solid;
+        z-index: 1;
+    }
+    .ho-so h3 {
+        padding: 0px 10px 15px;
+        margin-bottom: 19px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+        font-weight: 400;
+        font-size: 21px;
+    }
+    .ho-so p {
+        text-align: left;
+        margin-top: 11px;
+        font-size: 15px;
+    }
+    .ho-so span {
+        font-weight: 600; 
+    }
+    .nhom div:hover .ho-so , .ban-gv h4:hover .ho-so{
+        visibility: visible;
+    }
+    
+    .ban-gv .ho-so {
+        bottom: 91%;
+        left: 25%;
+        background-color: white;
+        font-size: 21px;
+        font-weight: 400;
+        padding: 0 23px;
+        filter: drop-shadow(0 2px 7px rgba(0, 0, 0, 0.2) );
+    }
+    .ban-gv .ho-so::before {
+        top: 99%;
+        right: 46%;
+        border-color: white transparent transparent transparent;
+    }
+    .ban-gv .ho-so::after {
+        top: 100%;
+        right: 45.5%;
+        border-color: rgba(0, 0, 0, 0.1) transparent transparent transparent;
+    }
+
+    td div .ho-so {
+        top: -5%;
+        left: 100%;
+        margin-left: 8px;
+        margin-top: -34px;
+        /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2); */
+        filter: drop-shadow(0 2px 7px rgba(0, 0, 0, 0.2) );
+        z-index: 1;
+    }
+    td div .ho-so::before {
+        top: 28%;
+        right: 100%; /* to the left */
+        border-color: transparent white transparent transparent;
+    }
+    td div .ho-so::after {
+        top: 27.5%;
+        right: 100%; /* to the left */
+        border-color: transparent rgba(0, 0, 0, 0.3) transparent transparent;
+    }
+
+    td:last-child div.ho-so {
+        left: -230%;
+        margin-left: -42%;
+        width: 243px;
+    }
+    td:last-child div .ho-so::before {
+        right: 0; /* to the left */
+        left: 100%;
+        border-color: transparent transparent transparent white;
+    }
+    td:last-child div .ho-so::after {
+        right: 0; /* to the left */
+        left: 100%;
+        border-color: transparent transparent transparent rgba(0, 0, 0, 0.3);
+    }
+</style>
+<body>
+    <h1>Sơ đồ lớp</h1>
+    
+    <div class="so-do">
+        <div class="cua col-1 fl">
+            <span></span>
+            <span>Cửa</span>
+            <span></span>
+            <span>Cửa</span>
+
+        </div>
+
+        <div class="buc-giang">
+            Bục giảng
+        </div>
+        <div class="ban-gv">
+            <h4>Bàn giảng viên
+                <span class="ho-so">Kiều Tuấn Dũng</span>
+            </h4>
+        </div>
+
+        <div class="day-ban">
+            <table> <!-- cellspacing="10" not support in HTML 5 -> use: border-spacing-->
+                <tr class="ban">
+                    <td class="nhom">
+                        <div>
+                            <h4>Lê Trọng Linh</h4>
+                            <div class="ho-so">
+                                <h3>Lê Trọng Linh</h3>
+                                <p><span>Mã sinh viên: </span>175A071396</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4>Trần Thị B</h4>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071512</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td rowspan="5"></td>
+                    <td class="nhom">
+                        <div>
+                            <h4>Nguyễn Ngọc Tú</h4>
+                            <div class="ho-so">
+                                <h3>Nguyễn Ngọc Tú</h3>
+                                <p><span>Mã sinh viên: </span>175A071399</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Hoàng D</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng D</h3>
+                                <p><span>Mã sinh viên: </span>175A071355</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td></td>
+
+                    <td class="nhom">
+                        <div>
+                            <h4>Hoàng Nhật Minh</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng Nhật Minh</h3>
+                                <p><span>Mã sinh viên: </span>1751120744</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Trần Thị B</h4>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071234</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td rowspan="5"></td>
+                    <td class="nhom">
+                        <div>
+                            <h4>Phạm Việt Tùng</h4>
+                            <div class="ho-so">
+                                <h3>Phạm Việt Tùng</h3>
+                                <p><span>Mã sinh viên: </span>175A071309</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Hoàng D</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng D</h3>
+                                <p><span>Mã sinh viên: </span>175A071352</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td></td>
+
+                    <td class="nhom">
+                        <div>
+                            <div class="ho-so">
+                                <h3>Nguyễn Văn Thắng</h3>
+                                <p><span>Mã sinh viên: </span>175A071139</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                            <h4>Nguyễn Văn Thắng</h4>
+                        </div>
+                        <div>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071567</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                            <h4>Trần Thị B</h4>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="ban">
+                    <td class="nhom">
+                        <div>
+                            <h4>Lưu Tùng Lâm</h4>
+                            <div class="ho-so">
+                                <h3>Lưu Tùng Lâm</h3>
+                                <p><span>Mã sinh viên: </span>175A071168</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                
+                        <div>
+                            <h4>Trần Thị B</h4>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071512</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                    
+                    <td class="nhom">
+                        <div>
+                            <h4>Mạnh Đạt</h4>
+                            <div class="ho-so">
+                                <h3>Mạnh Đạt</h3>
+                                <p><span>Mã sinh viên: </span>172A071484</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Hoàng D</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng D</h3>
+                                <p><span>Mã sinh viên: </span>175A071240</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div>
+                            <h4>Trần Hằng</h4>
+                            <div class="ho-so">
+                                <h3>Trần Hằng</h3>
+                                <p><span>Mã sinh viên: </span>175A030664</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Trần Thị B</h4>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>1751120852</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                    
+                    <td class="nhom">
+                        <div>
+                            <h4>Nguyễn Thúy Hằng</h4>
+                            <div class="ho-so">
+                                <h3>Nguyễn Thúy Hằng</h3>
+                                <p><span>Mã sinh viên: </span>175A071555</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Hoàng D</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng D</h3>
+                                <p><span>Mã sinh viên: </span>175A071501</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div>
+                            <div class="ho-so">
+                                <h3>Trần Hồng Sơn</h3>
+                                <p><span>Mã sinh viên: </span>175A071225</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                            <h4>Trần Hồng Sơn</h4>
+                        </div>
+                        <div>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071130</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                            <h4>Trần Thị B</h4>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="ban">
+                    <td class="nhom">
+                        <div>
+                            <h4>Lâm Minh Vũ</h4>
+                            <div class="ho-so">
+                                <h3>Lâm Minh Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071298</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                
+                        <div>
+                            <h4>Trần Thị B</h4>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071307</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                    
+                    <td class="nhom">
+                        <div>
+                            <h4>Hoàng Nghĩa Anh Vũ</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng Nghĩa Anh Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071210</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Hoàng D</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng D</h3>
+                                <p><span>Mã sinh viên: </span>175A071256</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div>
+                            <h4>Trần Tiến Vũ</h4>
+                            <div class="ho-so">
+                                <h3>Trần Tiến Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071146</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Trần Thị B</h4>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071133</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                    
+                    <td class="nhom">
+                        <div>
+                            <h4>Trần Đinh Nam</h4>
+                            <div class="ho-so">
+                                <h3>Trần Đinh Nam</h3>
+                                <p><span>Mã sinh viên: </span>175A071325</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Hoàng D</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng D</h3>
+                                <p><span>Mã sinh viên: </span>175A071161</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div>
+                            <div class="ho-so">
+                                <h3>Trần Thủy Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071482</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                            <h4> Trần Thủy Vũ</h4>
+                        </div>
+                        <div>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071572</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                            <h4>Trần Thị B</h4>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="ban">
+                    <td class="nhom">
+                        <div>
+                            <h4>Lâm Minh Vũ</h4>
+                            <div class="ho-so">
+                                <h3>Lâm Minh Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071298</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                
+                        <div>
+                            <h4>Trần Thị B</h4>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071307</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div>
+                            <h4>Hoàng Nghĩa Anh Vũ</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng Nghĩa Anh Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071210</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Hoàng D</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng D</h3>
+                                <p><span>Mã sinh viên: </span>175A071256</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div>
+                            <h4>Trần Tiến Vũ</h4>
+                            <div class="ho-so">
+                                <h3>Trần Tiến Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071146</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Trần Thị B</h4>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071133</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div>
+                            <h4>Trần Đinh Nam</h4>
+                            <div class="ho-so">
+                                <h3>Trần Đinh Nam</h3>
+                                <p><span>Mã sinh viên: </span>175A071325</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Hoàng D</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng D</h3>
+                                <p><span>Mã sinh viên: </span>175A071161</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div>
+                            <div class="ho-so">
+                                <h3>Trần Thủy Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071482</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                            <h4> Trần Thủy Vũ</h4>
+                        </div>
+                        <div>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071572</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                            <h4>Trần Thị B</h4>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="ban">
+                    <td class="nhom">
+                        <div>
+                            <h4>Lâm Minh Vũ</h4>
+                            <div class="ho-so">
+                                <h3>Lâm Minh Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071298</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                
+                        <div>
+                            <h4>Trần Thị B</h4>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071307</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div>
+                            <h4>Hoàng Nghĩa Anh Vũ</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng Nghĩa Anh Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071210</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Hoàng D</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng D</h3>
+                                <p><span>Mã sinh viên: </span>175A071256</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div>
+                            <h4>Trần Tiến Vũ</h4>
+                            <div class="ho-so">
+                                <h3>Trần Tiến Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071146</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Trần Thị B</h4>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071133</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div>
+                            <h4>Trần Đinh Nam</h4>
+                            <div class="ho-so">
+                                <h3>Trần Đinh Nam</h3>
+                                <p><span>Mã sinh viên: </span>175A071325</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Hoàng D</h4>
+                            <div class="ho-so">
+                                <h3>Hoàng D</h3>
+                                <p><span>Mã sinh viên: </span>175A071161</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                        </div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div>
+                            <div class="ho-so">
+                                <h3>Trần Thủy Vũ</h3>
+                                <p><span>Mã sinh viên: </span>175A071482</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                            <h4> Trần Thủy Vũ</h4>
+                        </div>
+                        <div>
+                            <div class="ho-so">
+                                <h3>Trần Thị B</h3>
+                                <p><span>Mã sinh viên: </span>175A071572</p>
+                                <p><span>Điểm: </span>chưa có</p>
+                            </div>
+                            <h4>Trần Thị B</h4>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="ban">
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                </tr>
+                <tr class="ban">
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                </tr>
+                <tr class="ban">
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                </tr>
+                <tr class="ban">
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                </tr>
+                <tr class="ban">
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                
+                    <td></td>
+                
+                    <td class="nhom">
+                        <div></div>
+                        <div></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
